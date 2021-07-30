@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user form</title>
+</head>
+    <body>
+        <h3>Edit user:</h3>
+<!--        <p th:if="${message != null}" th:text="${message}"></p>-->
+        <form th:action="@{/users}" th:method="post" th:object="${user}">
+            <div>
+                <label> User Name :
+                    <input type="text" name="username" id="username" th:field="*{username}"/>
+                </label>
+            </div>
+            <div th:each="type: ${roles}">
+                <label th:for="${type}" >
+                    <span th:text="${type}"></span>
+                    <input type="checkbox" th:name="${type}" th:checked="${user.getRoles().contains(type)}">
+                </label>
+            </div>
+
+            <div>
+                <label> Password:
+                    <input type="password" name="password"/>
+                </label>
+            </div>
+
+            <input type="hidden" name="userId" id="userId" th:field="*{id}"/>
+
+            <div>
+                <input type="submit" value="Edit"/>
+            </div>
+        </form>
+    </body>
+</html>

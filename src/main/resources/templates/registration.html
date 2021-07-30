@@ -8,12 +8,12 @@
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
-<h3>Registration:</h3>
-<p th:if="${message != null}" th:text="${message}"></p>
-<form th:action="@{/registration}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+    <h3>Registration:</h3>
+    <p th:if="${message != null}" th:text="${message}"></p>
+    <form th:action="@{/registration}" method="post">
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
 </body>
 </html>

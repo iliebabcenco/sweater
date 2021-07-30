@@ -10,6 +10,7 @@
         <form th:action="@{/logout}" th:method="post">
             <input type="submit" value="Sign Out"/>
         </form>
+        <a th:href="@{/users}">Users</a>
         <form th:action="@{/main}" th:method="post">
             <input type="text" name="text" id="" placeholder="Enter message: ">
             <input type="text" name="tag" placeholder="tag">
