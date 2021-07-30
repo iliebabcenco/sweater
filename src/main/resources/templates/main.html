@@ -5,7 +5,22 @@
     <title>Main</title>
 </head>
 <body>
-    <div th:text="${some}"></div>
+    <div>
+        <form action="/" method="post">
+            <input type="text" name="text" id="" placeholder="Enter message: ">
+            <input type="text" name="tag" placeholder="tag">
+            <button type="submit">Add message</button>
+        </form>
+        <form action="/filter" method="post">
 
+            <input type="text" name="filter">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <h3>List of messages: </h3>
+    <div th:each="message : ${messages}">
+        <a th:href="@{/messages/{id}(id=${message.getId()})}"
+           th:text="${ message.getId() + message.getText() + message.getTag()}">user</a>
+    </div>
 </body>
 </html>
