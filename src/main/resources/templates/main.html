@@ -7,24 +7,41 @@
 <body>
     <div>
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
+        <form th:action="@{/logout}" th:method="post">
             <input type="submit" value="Sign Out"/>
         </form>
-        <form action="/" method="post">
+        <form th:action="@{/main}" th:method="post">
             <input type="text" name="text" id="" placeholder="Enter message: ">
             <input type="text" name="tag" placeholder="tag">
             <button type="submit">Add message</button>
         </form>
-        <form action="/filter" method="post">
+        <form th:action="@{/filter}" th:method="post">
 
             <input type="text" name="filter">
             <button type="submit">Search</button>
         </form>
     </div>
     <h3>List of messages: </h3>
-    <div th:each="message : ${messages}">
-        <a th:href="@{/messages/{id}(id=${message.getId()})}"
-           th:text="${ message.getId() + message.getText() + message.getTag()}">user</a>
+    <div >
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Text</td>
+                    <td>Tag</td>
+                    <td>Author</td>
+                </tr>
+            </thead>
+            <tbody th:each="message : ${messages}">
+                <tr>
+                    <td th:text="${message.getId()}"></td>
+                    <td th:text="${message.getText()}"></td>
+                    <td th:text="${message.getTag()}"></td>
+                    <td th:text="${message.getAuthorName()}"></td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
 </body>
 </html>
