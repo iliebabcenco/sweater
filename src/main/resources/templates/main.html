@@ -15,7 +15,7 @@
             <input type="text" name="tag" placeholder="tag">
             <button type="submit">Add message</button>
         </form>
-        <form th:action="@{/filter}" th:method="post">
+        <form th:action="@{/main}" th:method="get" th:object="${filter}">
 
             <input type="text" name="filter">
             <button type="submit">Search</button>
