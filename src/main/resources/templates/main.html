@@ -2,47 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css">
     <title>Main</title>
 </head>
-<body>
-    <div>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" th:method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-        <a th:href="@{/users}">Users</a>
-        <form th:action="@{/main}" th:method="post">
-            <input type="text" name="text" id="" placeholder="Enter message: ">
-            <input type="text" name="tag" placeholder="tag">
-            <button type="submit">Add message</button>
-        </form>
-        <form th:action="@{/main}" th:method="get" th:object="${filter}">
+    <body>
+        <div>
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <form th:action="@{/logout}" th:method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+            <a th:href="@{/users}">Users</a>
+            <form th:action="@{/main}" th:method="post" enctype="multipart/form-data">
+                <input type="text" name="text" id="text" placeholder="Enter message: ">
+                <input type="text" name="tag" placeholder="tag">
+                <input type="file" name="file">
+                <button type="submit">Add message</button>
+            </form>
+            <form th:action="@{/main}" th:method="get" th:object="${filter}">
 
-            <input type="text" name="filter">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <h3>List of messages: </h3>
-    <div >
-        <table>
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Text</td>
-                    <td>Tag</td>
-                    <td>Author</td>
-                </tr>
-            </thead>
-            <tbody th:each="message : ${messages}">
-                <tr>
-                    <td th:text="${message.getId()}"></td>
-                    <td th:text="${message.getText()}"></td>
-                    <td th:text="${message.getTag()}"></td>
-                    <td th:text="${message.getAuthorName()}"></td>
-                </tr>
-            </tbody>
+                <input type="text" name="filter">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <h3>List of messages: </h3>
+        <div >
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Text</td>
+                        <td>Tag</td>
+                        <td>Author</td>
+                        <td>Img</td>
+                    </tr>
+                </thead>
+                <tbody th:each="message : ${messages}">
+                    <tr>
+                        <td th:text="${message.getId()}"></td>
+                        <td th:text="${message.getText()}"></td>
+                        <td th:text="${message.getTag()}"></td>
+                        <td th:text="${message.getAuthorName()}"></td>
+                        <td th:if="${message.getFileName() != null}">
+                            <img th:src="@{/img/{filename}(filename = ${message.getFileName()})}" alt="image">
+                        </td>
+                    </tr>
+                </tbody>
 
-        </table>
-    </div>
-</body>
+            </table>
+        </div>
+    </body>
 </html>
