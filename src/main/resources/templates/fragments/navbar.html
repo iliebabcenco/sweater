@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">Home</a>
+            <a class="navbar-brand" th:href="@{/}">Sweater</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,7 +21,7 @@
                         <a class="nav-link active" aria-current="page" th:href="@{/main}">Main</a>
                     </li>
                 </ul>
-                <div sec:authorize="isAuthenticated()">
+                <div sec:authorize ="hasAuthority('ADMIN')">
                     <a  class="btn btn-outline-secondary mx-1" th:href="@{/users}">Users</a>
                 </div>
                 <div sec:authorize="isAnonymous()">
