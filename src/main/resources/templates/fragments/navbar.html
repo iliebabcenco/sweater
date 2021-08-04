@@ -21,6 +21,7 @@
                         <a class="nav-link active" aria-current="page" th:href="@{/main}">Main</a>
                     </li>
                 </ul>
+                <h4 class="my-2" sec:authorize="isAuthenticated()" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h4>
                 <div sec:authorize ="hasAuthority('ADMIN')">
                     <a  class="btn btn-outline-secondary mx-1" th:href="@{/users}">Users</a>
                 </div>
