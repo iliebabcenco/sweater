@@ -14,7 +14,8 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
                 <th scope="col">Roles</th>
                 <th scope="col">Edit</th>
             </tr>
@@ -23,6 +24,7 @@
             <tr  >
                 <td th:text="${user.getId()}"></td>
                 <td th:text="${user.getUsername()}"></td>
+                <td th:text="${user.getEmail()}"></td>
                 <td><span th:each="role: ${user.getRoles()}" th:text="${role} + ' '"></span></td>
                 <td><a th:href="@{users/{id}(id=${user.getId()})}">Edit</a></td>
 

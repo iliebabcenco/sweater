@@ -11,14 +11,15 @@
 <body>
     <div th:replace="fragments/navbar :: header">&nbsp;</div>
     <div th:if="${param.error}">
-        Invalid username and password.
+        Invalid username or password.
     </div>
     <div class="card w-50 m-auto my-5">
         <h3 class="card-header">Registration:</h3>
         <p th:if="${message != null}" th:text="${message}"></p>
         <form th:action="@{/registration}" method="post" class="form p-2">
-            <div class="mb-3"><input class="form-control" type="text" name="username"/></div>
-            <div class="mb-3"><input class="form-control" type="password" name="password"/></div>
+            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="username"/></div>
+            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="password"/></div>
+            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="some@email.com"/></div>
             <div class="text-center"><input class="btn btn-outline-success" type="submit" value="Sign In"/></div>
         </form>
     </div>
