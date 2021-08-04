@@ -31,6 +31,9 @@
                 <div sec:authorize="isAnonymous()">
                     <a class="btn btn-outline-success mx-1" th:href="@{/registration}">Sign Up</a>
                 </div>
+                <div sec:authorize ="isAuthenticated()">
+                    <a  class="btn btn-outline-secondary mx-1" th:href="@{/users/profile}">Profile</a>
+                </div>
                 <form sec:authorize="isAuthenticated()" class="d-flex m-1"  th:action="@{/logout}" th:method="post">
                     <input class="btn btn-outline-danger" type="submit" value="Sign Out"/>
                 </form>
